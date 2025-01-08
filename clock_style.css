@@ -1,0 +1,212 @@
+:root {
+    /* Sizes */
+    --clock-size: 350px;
+
+    /* Colors */
+    --primary-color: #0be7fb;
+    --secondary-color: #010b8b;
+    --accent-color: #ff6d69;
+    --additional-color: #fecc50;
+    --light-color: #ffffff;
+    --button-text-color: #050514;
+    --background-gradient: radial-gradient(circle, #0f0f25, #10133a, #050514);
+    --clock-gradient: radial-gradient(circle, #10133a, #0d0d28);
+
+    /* Font */
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    min-height: 100vh;
+    background: var(--background-gradient);
+}
+
+.buttons-wrapper, .clock-wrapper{
+    width: 80vw;
+    max-width: var(--clock-size);
+}
+
+.buttons-wrapper {
+    height: 20vw;
+    max-height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttons {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: var(--button-text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.buttons:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5em;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(-4em) skewX(-45deg);
+}
+
+.buttons:hover:before{
+    animation: move-light 0.5s;
+}
+
+@keyframes move-light{
+    from {
+        transform: translateX(-6em) skewX(-45deg);
+    }
+    to {
+        transform: translateX(12em) skewX(-45deg);
+    }
+}
+
+.button-start{
+    background: var(--additional-color);
+}
+
+.button-stop{
+    background: var(--accent-color);
+}
+
+.clock-wrapper{
+    height: 80vw;
+    max-height: var(--clock-size);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    padding: 3px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock{
+    background: var(--clock-gradient);
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-radius: 50%;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hours {
+    position: absolute;
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--primary-color);
+}
+
+.hour-marker-9{
+    top: calc(50% - 20px);
+    left: 10px;
+}
+
+.hour-marker-3{
+    top: calc(50% - 20px);
+    right: 10px;
+}
+
+.hour-marker-12{
+    top: 10px;
+    left: calc(50% - 10px);
+}
+
+.hour-marker-6{
+    bottom: 10px;
+    left: calc(50% - 10px);
+}
+
+.clock:before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--light-color);
+    border-radius: 50%;
+    z-index: 13;
+}
+
+.clock .hour-hand-wrapper,
+.clock .minute-hand-wrapper,
+.clock .second-hand-wrapper{
+    position: absolute;
+}
+
+.clock .hour-hand-wrapper, .hour-hand{
+    width: 160px;
+    height: 160px;
+}
+.clock .minute-hand-wrapper, .minute-hand{
+    width: 190px;
+    height: 190px;
+}
+.clock .second-hand-wrapper, .second-hand{
+    width: 230px;
+    height: 230px;
+}
+
+.hour-hand,
+.minute-hand,
+.second-hand{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hour-hand:before,
+.minute-hand:before,
+.second-hand:before{
+    content: '';
+    position: absolute;
+    border-radius: 6px 6px 0 0;
+}
+
+.hour-hand:before{
+    width: 8px;
+    height: 80px;
+    background-color: var(--accent-color);
+    z-index: 10;
+}
+
+.minute-hand:before{
+    width: 4px;
+    height: 90px;
+    background-color: var(--additional-color);
+    z-index: 11;
+}
+
+.second-hand:before{
+    width: 2px;
+    height: 150px;
+    background-color: var(--light-color);
+    z-index: 12;
+}
